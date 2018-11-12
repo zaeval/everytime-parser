@@ -176,6 +176,7 @@ def get_timetable_user_id(ses,friend_token):
 
 
     return {'name':name,'data':ret}
+
 def login(uid, pwd):
     ses = requests.Session()
     req = ses.post(root_url + "/user/login", data={
@@ -184,6 +185,25 @@ def login(uid, pwd):
         "redirect":"/"
     })
     return ses
+
+
+def register(id, password, email, name, nickname):
+    ses = requests.Session()
+    req = ses.post(root_url + '/save/user', data={
+        'userid': id,
+        'password': password,
+        'name': name,
+        'nickname': nickname,
+        'email': email,
+        'campus_id': "62",
+        'enter_year': "2018",
+        'remote_addr': "",
+        'ad_agreement': 0,
+        "installer_name": "",
+    })
+
+    print(req.text)
+
 def send_friend(ses,friend_id=None,file=None):
     if file==None and friend_id!=None:
         req = ses.post(root_url+"/save/friend/request",data={'data':friend_id})
@@ -214,12 +234,71 @@ def get_friend_list(ses):
     for tag in bs.select("friend"):
         ret.append({'name':tag.get("name"),'userid':tag.get('userid')})
     return ret
+def union_time_table(friend_timetables):
+    days = [[],[],[],[],[],[],[]]
+    for friend in friend_timetables:
+        for times in friend['data']:
+            for time in times['time']:
+                start_time = float(time['starttime']) / 12
+                end_time = float(time['endtime'])/12
+                days[int(time['day'])].append((start_time,end_time))
 
+    ret = [[],[],[],[],[],[],[]]
+    day_num = 0
+    for day in days:
+        day.sort(key=lambda time: (time[0],time[1]))
+        if(len(day) > 0):
+            start = day[0][0]
+            end = day[0][1]
+        else:
+            continue
+        for idx in range(1,len(day)):
+            after = day[idx]
+            a_start = after[0]
+            a_end = after[1]
+
+            if end > a_start and a_end > end:
+                end = a_end
+            if end < a_start:
+                ret[day_num].append((start,end))
+                start = a_start
+                end = a_end
+        ret[day_num].append((start, end))
+        day_num += 1
+
+    return ret
+
+def empty_time_table(friend_timetables):
+    utt = union_time_table(friend_timetables)
+
+    ret = [[],[],[],[],[],[],[]]
+    day_num = 0
+    for uts in utt:
+        start = 0
+        end = 0
+        for time in uts:
+            a_start = time[0]
+            a_end = time[1]
+            end = a_start
+            ret[day_num].append((start,end))
+            start = a_end
+        ret[day_num].append((start,24))
+
+        day_num += 1
+
+    return ret
 if __name__ == "__main__":
     ses = login("YOUR_EVERYTIME_ID","YOUR_EVERYTIME_PASSWORD")
     # print(send_friend(ses,file='alias.txt'))
+    friend_timetables = []
     for friend in get_friend_list(ses):
-        print(get_timetable_user_id(ses,friend["userid"]))
-
+        temp = get_timetable_user_id(ses,friend["userid"])
+        friend_timetables.append(temp)
+    union = union_time_table(friend_timetables)
+    empty = empty_time_table(friend_timetables)
+    print(union)
+    print(empty)
+    import util
+    print(util.int2datetime(empty))
     # print(get_timetable_user_id(ses,get_friend_list(ses)[0]["userid"]))
 
