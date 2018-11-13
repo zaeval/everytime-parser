@@ -182,7 +182,6 @@ def login(uid, pwd):
     req = ses.post(root_url + "/user/login", data={
         "userid": uid,
         "password": pwd,
-        "redirect":"/"
     })
     return ses
 
@@ -201,8 +200,10 @@ def register(id, password, email, name, nickname):
         'ad_agreement': 0,
         "installer_name": "",
     })
-
-    print(req.text)
+    if BeautifulSoup(req.text,'html.parser').find("response").text == "1":
+        print("성공적으로 회원가입을 완료 했습니다.")
+    else:
+        print("회원가입 실패.")
 
 def send_friend(ses,friend_id=None,file=None):
     if file==None and friend_id!=None:
@@ -287,18 +288,6 @@ def empty_time_table(friend_timetables):
         day_num += 1
 
     return ret
-if __name__ == "__main__":
-    ses = login("YOUR_EVERYTIME_ID","YOUR_EVERYTIME_PASSWORD")
-    # print(send_friend(ses,file='alias.txt'))
-    friend_timetables = []
-    for friend in get_friend_list(ses):
-        temp = get_timetable_user_id(ses,friend["userid"])
-        friend_timetables.append(temp)
-    union = union_time_table(friend_timetables)
-    empty = empty_time_table(friend_timetables)
-    print(union)
-    print(empty)
-    import util
-    print(util.int2datetime(empty))
+
     # print(get_timetable_user_id(ses,get_friend_list(ses)[0]["userid"]))
 

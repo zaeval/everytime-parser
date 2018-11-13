@@ -1,2 +1,82 @@
 # everytime-parser
-everytime-parser
+everytime-parser served by zaeval.
+
+It is using for nonprofit.
+
+## HOW 2 INSTALL!
+```
+pip install everytime-parser
+```
+or
+```
+pip3 install everytime-parser
+```
+or
+
+download the .zip file from top of this page (click the clone button)
+
+## Auth
+
+and then, we need auth.
+
+everytime cannot allowed api to anyone.
+
+in, this library serve login function
+
+```python
+import everytime
+everytime.login("YOUR_EVERYTIME_UID","YOUR_EVERYTIME_PASSWORD")
+```
+
+and this function return session of your user information. So, if you want call another function.
+
+you should save this information into the variable. like this,
+
+```python
+import everytime
+ses = everytime.login("YOUR_EVERYTIME_UID","YOUR_EVERYTIME_PASSWORD")
+```
+
+## Friend
+
+It just served three functions, send request to be friend, get my friend_list 
+and get friend's timetable. few month ago, friend's timetable can got with no-auth. but it changed.
+
+first, Introduce send_friend function
+
+```python
+import everytime
+everytime.send_friend(ses,friend_id="YOUR_FRIEND_ID")
+```
+
+if you are success, it return
+```
+"친구요청에 성공했습니다 : YOUR_FRIEND_ID" 
+```
+
+else if you are fail, it return
+```
+"친구요청에 실패했습니다 : YOUR_FRIEND_ID" 
+```
+
+and this function can read file and batched-sending like this,
+```python
+import everytime
+everytime.send_friend(ses,file="TEXT_FILE_PATH")
+```
+
+It required notation, with new line split.
+```
+YOUR_FRIEND_ID_1
+YOUR_FRIEND_ID_2
+YOUR_FRIEND_ID_3
+YOUR_FRIEND_ID_4
+        :
+        :
+```
+
+second, we can get my-friend list. like this,
+```python
+import everytime
+everytime.send_friend(ses,friend_id="YOUR_FRIEND_ID")
+```

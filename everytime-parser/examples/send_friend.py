@@ -1,0 +1,7 @@
+import sys
+sys.path.append("..")
+
+import everytime
+
+ses = everytime.login("YOUR_ID","YOUR_PASSWORD")
+print(everytime.send_friend(ses,file='alias.txt'))
