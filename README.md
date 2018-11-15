@@ -100,7 +100,7 @@ and It served some util function to you.
  
 ## Examples
 
- - ![auth.py](https://github.com/zaeval/everytime-parser/blob/master/everytime-parser/examples/auth.py)
- - ![get_friend_list.py](https://github.com/zaeval/everytime-parser/blob/master/everytime-parser/examples/get_friend_list.py)
- - ![send_friend.py](https://github.com/zaeval/everytime-parser/blob/master/everytime-parser/examples/send_friend.py)
+ - [auth.py](https://github.com/zaeval/everytime-parser/blob/master/everytime-parser/examples/auth.py)
+ - [get_friend_list.py](https://github.com/zaeval/everytime-parser/blob/master/everytime-parser/examples/get_friend_list.py)
+ - [send_friend.py](https://github.com/zaeval/everytime-parser/blob/master/everytime-parser/examples/send_friend.py)
 
