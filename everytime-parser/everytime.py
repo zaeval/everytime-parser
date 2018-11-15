@@ -235,6 +235,7 @@ def get_friend_list(ses):
     for tag in bs.select("friend"):
         ret.append({'name':tag.get("name"),'userid':tag.get('userid')})
     return ret
+
 def union_time_table(friend_timetables):
     days = [[],[],[],[],[],[],[]]
     for friend in friend_timetables:

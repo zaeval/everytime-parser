@@ -78,5 +78,29 @@ YOUR_FRIEND_ID_4
 second, we can get my-friend list. like this,
 ```python
 import everytime
-everytime.send_friend(ses,friend_id="YOUR_FRIEND_ID")
+friends = everytime.get_friend_list(ses)
 ```
+
+and then, we can get friend's time table, too.
+```python
+friend_timetables = []
+for friend in friends:
+    temp = everytime.get_timetable_user_id(ses, friend["userid"])
+    friend_timetables.append(temp)
+```
+like this.
+
+## Some Utils
+
+and It served some util function to you.
+
+ - union friend's timetable.
+ - find empty friend's timetable(reverse union)
+ - change format to see easier
+ 
+## Examples
+
+ - ![auth.py](https://github.com/zaeval/everytime-parser/blob/master/everytime-parser/examples/auth.py)
+ - ![get_friend_list.py](https://github.com/zaeval/everytime-parser/blob/master/everytime-parser/examples/get_friend_list.py)
+ - ![send_friend.py](https://github.com/zaeval/everytime-parser/blob/master/everytime-parser/examples/send_friend.py)
+
