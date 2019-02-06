@@ -183,7 +183,7 @@ def login(uid, pwd):
         "userid": uid,
         "password": pwd,
     })
-    return ses
+    return ses,req
 
 
 def register(id, password, email, name, nickname):

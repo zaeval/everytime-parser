@@ -4,7 +4,7 @@ sys.path.append("..")
 import everytime
 
 friend_timetables = []
-ses = everytime.login("YOUR_ID","YOUR_PASSWORD")
+ses,res = everytime.login("YOUR_ID","YOUR_PASSWORD")
 
 friends = everytime.get_friend_list(ses)
 for friend in friends:
