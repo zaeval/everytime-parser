@@ -12,6 +12,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/zaeval/everytime-parser",
+    download_url="https://github.com/zaeval/everytime-parser/dist/everytime-parser-0.0.5.tar.gz",
     packages=setuptools.find_packages(),
     classifiers=(
         "Programming Language :: Python :: 3",
