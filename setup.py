@@ -1,11 +1,12 @@
 import setuptools
+import os
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="everytime-parser",
-    version="0.1",
+    version="0.1.4",
     author="zaeval",
     author_email="zaeval@among.software",
     description="everytime-parser and it serve some utility",
