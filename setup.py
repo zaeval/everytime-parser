@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="everytime-parser",
-    version="0.0.2",
+    version="0.0.5",
     author="zaeval",
     author_email="zaeval@among.software",
     description="everytime-parser and it serve some utility",
@@ -18,6 +18,7 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ),
+    zip_safe=False,
     install_requires=[
         "requests",
         "bs4",
