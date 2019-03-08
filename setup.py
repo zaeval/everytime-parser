@@ -5,14 +5,13 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="everytime-parser",
-    version="0.0.5",
+    version="0.1",
     author="zaeval",
     author_email="zaeval@among.software",
     description="everytime-parser and it serve some utility",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/zaeval/everytime-parser",
-    download_url="https://github.com/zaeval/everytime-parser/dist/everytime-parser-0.0.5.tar.gz",
     packages=setuptools.find_packages(),
     classifiers=(
         "Programming Language :: Python :: 3",
