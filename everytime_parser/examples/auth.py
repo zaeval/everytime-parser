@@ -1,7 +1,7 @@
 import sys
 sys.path.append("..")
 
-import everytime
+from .. import everytime
 # TODO: register to everytime
 everytime.register("everytest5","password",'everytest5@naver.com',"everyname5","everynick5")
 
