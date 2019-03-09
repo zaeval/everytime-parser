@@ -1,7 +1,7 @@
 import sys
 sys.path.append("..")
 
-from .. import everytime
+import everytime
 
 friend_timetables = []
 ses,res = everytime.login("YOUR_ID","YOUR_PASSWORD")
