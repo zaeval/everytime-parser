@@ -43,7 +43,18 @@ def login(uid, pwd):
     })
     return ses,req
 
+def my_info(ses):
+    res = ses.post('https://everytime.kr/my')
+    bs = BeautifulSoup(res.text, 'html.parser')
+    my_info_keys = ['id', 'name', 'nickname', 'email', 'school']
+    my_info = {}
+    try:
+        for key in range(len(my_info_keys)):
+            my_info[my_info_keys[key]] = bs.findAll('em')[key].text
+    except Exception:
+        return None
 
+    return my_info
 def register(id, password, email, name, nickname):
     ses = requests.Session()
     req = ses.post(root_url + '/save/user', data={
